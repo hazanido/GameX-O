@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   },
   bord: {
     flex: 1,
+    margin: 30,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 100,
-    margin: 10,
+    margin: 8,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'lightblue',
