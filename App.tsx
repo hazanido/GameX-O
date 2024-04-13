@@ -214,14 +214,13 @@ if (checkVictory()) {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.image} resizeMode="cover" source={require("./assets/backgroundX-O.jpg")} >
-      <Text>Count: {count}</Text>
+      <Text>Tic Tac Toe</Text>
 
       <View style={styles.bord}>
       
       {buttonVisible ? (//button 0
         <TouchableOpacity style={styles.button} onPress={ ()=> marked(0)}>
-          <Text>Press Here</Text>
-          
+
         </TouchableOpacity>
       ) : (
         <Image source={imageSource} style={styles.button} />
@@ -229,7 +228,6 @@ if (checkVictory()) {
  
       {buttonVisible1 ? (//button 1
         <TouchableOpacity style={styles.button} onPress={()=> marked(1)}>
-          <Text>Press Here1</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource1} style={styles.button} />
@@ -237,7 +235,6 @@ if (checkVictory()) {
 
       {buttonVisible2 ? (//button 2
         <TouchableOpacity style={styles.button} onPress={()=> marked(2)}>
-          <Text>Press Here2</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource2} style={styles.button} />
@@ -245,21 +242,18 @@ if (checkVictory()) {
 
       {buttonVisible3 ? (//button 3
         <TouchableOpacity style={styles.button} onPress={()=> marked(3)}>
-          <Text>Press Here3</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource3} style={styles.button} />
       )}
       {buttonVisible4 ? (//button 4
         <TouchableOpacity style={styles.button} onPress={()=> marked(4)}>
-          <Text>Press Here4</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource4} style={styles.button} />
       )}
       {buttonVisible5 ? (//button 5
         <TouchableOpacity style={styles.button} onPress={()=> marked(5)}>
-          <Text>Press Here5</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource5} style={styles.button} />
@@ -267,27 +261,28 @@ if (checkVictory()) {
 
       {buttonVisible6 ? (//button 6
         <TouchableOpacity style={styles.button} onPress={()=> marked(6)}>
-          <Text>Press Here6</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource6} style={styles.button} />
       )}
       {buttonVisible7 ? (//button 7
         <TouchableOpacity style={styles.button} onPress={()=> marked(7)}>
-          <Text>Press Here7</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource7} style={styles.button} />
       )}
       {buttonVisible8 ? (//button 8
         <TouchableOpacity style={styles.button} onPress={()=> marked(8)}>
-          <Text>Press Here8</Text>
         </TouchableOpacity>
       ) : (
         <Image source={imageSource8} style={styles.button} />
       )}
 </View>
+<View style={styles.countContainer}>
+      <Text>turn: {count % 2 === 0 ? 'Player 1' : 'Player 2'}</Text>
+</View>
 <View style={styles.fixToText}>
+
     <Button
   title="Rules of the Game"
   onPress={() => Alert.alert(
@@ -342,5 +337,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
 
+  },
+  countContainer: {
+    alignItems: 'center',
+    padding: 10,
   },
 });
