@@ -32,10 +32,10 @@ export default function App() {
   //button 9
   const [imageSource8, setImageSource8] = useState(undefined);
   const [buttonVisible8, setButtonVisible8] = useState(true);
-const checkVictory = (id: number)=>{
-  if ( (buttonVisible === true&& buttonVisible1 === true && buttonVisible2 === true)||
-  (buttonVisible3 === true&& buttonVisible4 === true && buttonVisible5 === true)||
-  (buttonVisible6 === true&& buttonVisible7 === true && buttonVisible8 === true)){
+const checkVictory = ()=>{
+  if ( (imageSource == imageSource1&& imageSource1 == imageSource2)||
+  (imageSource3 == imageSource4 && imageSource4 == imageSource5)||
+  (buttonVisible6 == true&& buttonVisible7 == true && buttonVisible8 == true)){
    
 
 
@@ -51,12 +51,21 @@ const checkVictory = (id: number)=>{
 
   }
 const gameReset=()=>{
-  const functionsArray = [setButtonVisible,setButtonVisible1,setButtonVisible2,setButtonVisible3,setButtonVisible4,
-    setButtonVisible5,setButtonVisible6,setButtonVisible7,setButtonVisible8];
-  for (let index = 0; index < 9; index++) {
-
+  const functionsArray = [
+    setButtonVisible,
+    setButtonVisible1,
+    setButtonVisible2,
+    setButtonVisible3,
+    setButtonVisible4,
+    setButtonVisible5,
+    setButtonVisible6,
+    setButtonVisible7,
+    setButtonVisible8
+  ];
+  for (let index = 0; index  < functionsArray.length; index++) {
+    functionsArray[index](true);
     
-  }
+  };
 }
 const marked= (id: number) => {
   
@@ -70,10 +79,6 @@ const marked= (id: number) => {
       setImageSource(require('./assets/O.png'));
       setButtonVisible(false);
       setCount(prevCount => prevCount + 1)
-    }else{
-      Alert.alert('Tie try again');
-      setCount(0);
-      setButtonVisible(true);
     }
   }else if(id==1){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -84,11 +89,6 @@ const marked= (id: number) => {
       setImageSource1(require('./assets/O.png'));
       setButtonVisible1(false);
       setCount(prevCount => prevCount + 1)
-    }else{
-      Alert.alert('Tie try again');
-      setCount(0);
-      
-  
     }
   }else if(id==2){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -99,10 +99,6 @@ const marked= (id: number) => {
       setImageSource2(require('./assets/O.png'));
       setButtonVisible2(false);
       setCount(prevCount => prevCount + 1)
-    }else{
-      Alert.alert('Tie try again');
-      setCount(0);
-    
     }
 }else if(id==3){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -113,10 +109,6 @@ const marked= (id: number) => {
     setImageSource3(require('./assets/O.png'));
     setButtonVisible3(false);
     setCount(prevCount => prevCount + 1)
-  }else{
-    Alert.alert('Tie try again');
-    setCount(0);
-    
   }
 }else if(id==4){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -127,10 +119,6 @@ const marked= (id: number) => {
     setImageSource4(require('./assets/O.png'));
     setButtonVisible4(false);
     setCount(prevCount => prevCount + 1)
-  }else{
-    Alert.alert('Tie try again');
-    setCount(0);
-    
   }
 }else if(id==5){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -141,10 +129,6 @@ const marked= (id: number) => {
     setImageSource5(require('./assets/O.png'));
     setButtonVisible5(false);
     setCount(prevCount => prevCount + 1)
-  }else{
-    Alert.alert('Tie try again');
-    setCount(0);
-    
   }
 }else if(id==6){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -155,10 +139,6 @@ const marked= (id: number) => {
     setImageSource6(require('./assets/O.png'));
     setButtonVisible6(false);
     setCount(prevCount => prevCount + 1)
-  }else{
-    Alert.alert('Tie try again');
-    setCount(0);
-    
   }
 }else if(id==7){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
@@ -169,24 +149,22 @@ const marked= (id: number) => {
     setImageSource7(require('./assets/O.png'));
     setButtonVisible7(false);
     setCount(prevCount => prevCount + 1)
-  }else{
-    Alert.alert('Tie try again');
-    setCount(0);
-    
   }
 }else if(id==8){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource8(require('./assets/x.png'));
     setButtonVisible8(false);
     setCount(prevCount => prevCount + 1)
+    Alert.alert('Tie try again');
+    setCount(0);
+    gameReset();
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource8(require('./assets/O.png'));
     setButtonVisible8(false);
     setCount(prevCount => prevCount + 1)
-  }else{
     Alert.alert('Tie try again');
     setCount(0);
-    
+    gameReset();
   }
 }
 }
