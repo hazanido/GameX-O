@@ -35,18 +35,17 @@ export default function App() {
 const checkVictory = ()=>{
   if ( (imageSource == imageSource1&& imageSource1 == imageSource2)||
   (imageSource3 == imageSource4 && imageSource4 == imageSource5)||
-  (buttonVisible6 == true&& buttonVisible7 == true && buttonVisible8 == true)){
-   
-
-
-  }else if( (buttonVisible === true&& buttonVisible3 === true && buttonVisible6 === true)||
-  (buttonVisible1 === true&& buttonVisible4 === true && buttonVisible7 === true)||
-  (buttonVisible2 === true&& buttonVisible5 === true && buttonVisible8 === true)){
-
-
-  }else if( (buttonVisible === true&& buttonVisible4 === true && buttonVisible8 === true)||
-  (buttonVisible2 === true&& buttonVisible4 === true && buttonVisible6 === true)){
-
+  (imageSource6 == imageSource7&& imageSource7 == imageSource8)){
+     return true;
+  }else if( (imageSource == imageSource3&& imageSource3 == imageSource6)||
+  (imageSource1 == imageSource4 && imageSource4 == imageSource7)||
+  (imageSource2 == imageSource5&& imageSource5 == imageSource8)){
+     return true;
+  }else if( (imageSource == imageSource4&& imageSource4 == imageSource8)||
+  (imageSource2 == imageSource4 && imageSource4 == imageSource6)){
+      return true;
+  }else{
+    return false;
   }
 
   }
@@ -69,7 +68,12 @@ const gameReset=()=>{
 }
 const marked= (id: number) => {
   
-  
+  if (checkVictory()==true && count % 2 === 0){
+    Alert.alert('Player 1 the winner');
+
+  }else if(checkVictory()==true && count % 2 === 1){
+    Alert.alert('Player 2 the winner');
+  }
   if(id==0){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource(require('./assets/x.png'));
