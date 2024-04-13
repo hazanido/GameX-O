@@ -5,6 +5,7 @@ import {StatusBar,ImageBackground, StyleSheet, Text, View,Image,Button,Touchable
 export default function App() {
   
   const [count,setCount]=useState(0);
+  
   //button 1
   const [imageSource, setImageSource] = useState(undefined);
   const [buttonVisible, setButtonVisible] = useState(true);
@@ -33,8 +34,6 @@ export default function App() {
   const [imageSource8, setImageSource8] = useState(undefined);
   const [buttonVisible8, setButtonVisible8] = useState(true);
 
-
-  
 
   const checkVictory = () => {
     const images = [
@@ -100,113 +99,113 @@ const gameReset=()=>{
 }
 const marked= (id: number) => {
   
-
-
   if(id==0){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource(require('./assets/x.png'));
       setButtonVisible(false);
-      setCount(prevCount => prevCount + 1)
+
+      
     }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
       setImageSource(require('./assets/O.png'));
       setButtonVisible(false);
-      setCount(prevCount => prevCount + 1)
+
     }
   }else if(id==1){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource1(require('./assets/x.png'));
       setButtonVisible1(false);
-      setCount(prevCount => prevCount + 1)
+
     }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
       setImageSource1(require('./assets/O.png'));
       setButtonVisible1(false);
-      setCount(prevCount => prevCount + 1)
+
     }
   }else if(id==2){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource2(require('./assets/x.png'));
       setButtonVisible2(false);
-      setCount(prevCount => prevCount + 1)
+
     }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
       setImageSource2(require('./assets/O.png'));
       setButtonVisible2(false);
-      setCount(prevCount => prevCount + 1)
+
     }
 }else if(id==3){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource3(require('./assets/x.png'));
     setButtonVisible3(false);
-    setCount(prevCount => prevCount + 1)
+
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource3(require('./assets/O.png'));
     setButtonVisible3(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }else if(id==4){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource4(require('./assets/x.png'));
     setButtonVisible4(false);
-    setCount(prevCount => prevCount + 1)
+
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource4(require('./assets/O.png'));
     setButtonVisible4(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }else if(id==5){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource5(require('./assets/x.png'));
     setButtonVisible5(false);
-    setCount(prevCount => prevCount + 1)
+
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource5(require('./assets/O.png'));
     setButtonVisible5(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }else if(id==6){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource6(require('./assets/x.png'));
     setButtonVisible6(false);
-    setCount(prevCount => prevCount + 1)
+
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource6(require('./assets/O.png'));
     setButtonVisible6(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }else if(id==7){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource7(require('./assets/x.png'));
     setButtonVisible7(false);
-    setCount(prevCount => prevCount + 1)
+
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource7(require('./assets/O.png'));
     setButtonVisible7(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }else if(id==8){
   if(count == 0||count ==2||count ==4||count ==6||count ==8){
     setImageSource8(require('./assets/x.png'));
     setButtonVisible8(false);
-    setCount(prevCount => prevCount + 1)
+ 
+
+    
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource8(require('./assets/O.png'));
     setButtonVisible8(false);
-    setCount(prevCount => prevCount + 1)
+
   }
 }
-if (checkVictory()==true && (count == 0||count ==2||count ==4||count ==6||count ==8)){
-  Alert.alert('Player 1 the winner');
-  setCount(0);
-  gameReset()
 
-}else if(checkVictory()==true && (count == 1||count ==3||count ==5||count ==7||count ==9)){
-  Alert.alert('Player 2 the winner');
-  setCount(0);
-  gameReset()
-}
-else if (count==8){
-  Alert.alert('Tie try again');
-  setCount(0);
+if (checkVictory() && count < 9) {
+
+  const winner = count % 2 === 0 ? 'Player 1' : 'Player 2';
+  Alert.alert(`${winner} the winner`);
   gameReset();
+  setCount(0);
+} else if (count === 8) {
+  Alert.alert('Tie try again');
+  gameReset();
+  setCount(0);
+} else {
+  setCount(prevCount => prevCount + 1);
 }
 
 }
