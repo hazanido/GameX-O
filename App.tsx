@@ -32,17 +32,24 @@ export default function App() {
   //button 9
   const [imageSource8, setImageSource8] = useState(undefined);
   const [buttonVisible8, setButtonVisible8] = useState(true);
-const checkVictory = ()=>{
-  if ( (imageSource == imageSource1&& imageSource1 == imageSource2)||
-  (imageSource3 == imageSource4 && imageSource4 == imageSource5)||
-  (imageSource6 == imageSource7&& imageSource7 == imageSource8)){
-     return true;
-  }else if( (imageSource == imageSource3&& imageSource3 == imageSource6)||
-  (imageSource1 == imageSource4 && imageSource4 == imageSource7)||
-  (imageSource2 == imageSource5&& imageSource5 == imageSource8)){
-     return true;
-  }else if( (imageSource == imageSource4&& imageSource4 == imageSource8)||
-  (imageSource2 == imageSource4 && imageSource4 == imageSource6)){
+
+  const checkVictory = ()=>{
+    if (
+      (imageSource !== undefined && imageSource1 !== undefined && imageSource2 !== undefined && imageSource == imageSource1 && imageSource1 == imageSource2) ||
+      (imageSource3 !== undefined && imageSource4 !== undefined && imageSource5 !== undefined && imageSource3 == imageSource4 && imageSource4 == imageSource5) ||
+      (imageSource6 !== undefined && imageSource7 !== undefined && imageSource8 !== undefined && imageSource6 == imageSource7 && imageSource7 == imageSource8)
+    ) {
+      return true;
+    }
+    else if (
+      (imageSource !== undefined && imageSource3 !== undefined && imageSource6 !== undefined && imageSource == imageSource3 && imageSource3 == imageSource6) ||
+      (imageSource1 !== undefined && imageSource4 !== undefined && imageSource7 !== undefined && imageSource1 == imageSource4 && imageSource4 == imageSource7) ||
+      (imageSource2 !== undefined && imageSource5 !== undefined && imageSource8 !== undefined && imageSource2 == imageSource5 && imageSource5 == imageSource8)
+    ) {
+      return true;
+    }else if(
+    (imageSource !== undefined && imageSource4 !== undefined && imageSource8 !== undefined && imageSource == imageSource4 && imageSource4 == imageSource8) ||
+    (imageSource2 !== undefined && imageSource4 !== undefined && imageSource6 !== undefined && imageSource2 == imageSource4 && imageSource4 == imageSource6)){
       return true;
   }else{
     return false;
