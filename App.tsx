@@ -214,8 +214,6 @@ if (checkVictory()) {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.image} resizeMode="cover" source={require("./assets/backgroundX-O.jpg")} >
-      <Text>Tic Tac Toe</Text>
-
       <View style={styles.bord}>
       
       {buttonVisible ? (//button 0
@@ -278,9 +276,12 @@ if (checkVictory()) {
         <Image source={imageSource8} style={styles.button} />
       )}
 </View>
+<Text style = {styles.titleText} >Tic Tac Toe</Text>
+
 <View style={styles.countContainer}>
-      <Text>turn: {count % 2 === 0 ? 'Player 1' : 'Player 2'}</Text>
+      <Text style = {styles.titleText2} >Turn: {count % 2 === 0 ? 'Player 1' : 'Player 2'}</Text>
 </View>
+
 <View style={styles.fixToText}>
 
     <Button
@@ -294,7 +295,7 @@ if (checkVictory()) {
           title="Game reset"
           onPress={gameReset}
         />
-      </View>
+  </View>
     </ImageBackground>
     </View>
   );
@@ -313,6 +314,8 @@ const styles = StyleSheet.create({
     height:400,
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center', 
+    marginBottom: 50,
   },
   bord: {
     flex: 1,
@@ -336,10 +339,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     alignItems: 'center',
-
+    margin: -150,
   },
   countContainer: {
     alignItems: 'center',
     padding: 10,
+    
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  titleText2: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
