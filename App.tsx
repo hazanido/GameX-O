@@ -33,29 +33,42 @@ export default function App() {
   const [imageSource8, setImageSource8] = useState(undefined);
   const [buttonVisible8, setButtonVisible8] = useState(true);
 
-  const checkVictory = ()=>{
-    if (
-      (imageSource !== undefined && imageSource1 !== undefined && imageSource2 !== undefined && imageSource == imageSource1 && imageSource1 == imageSource2) ||
-      (imageSource3 !== undefined && imageSource4 !== undefined && imageSource5 !== undefined && imageSource3 == imageSource4 && imageSource4 == imageSource5) ||
-      (imageSource6 !== undefined && imageSource7 !== undefined && imageSource8 !== undefined && imageSource6 == imageSource7 && imageSource7 == imageSource8)
-    ) {
-      return true;
-    }
-    else if (
-      (imageSource !== undefined && imageSource3 !== undefined && imageSource6 !== undefined && imageSource == imageSource3 && imageSource3 == imageSource6) ||
-      (imageSource1 !== undefined && imageSource4 !== undefined && imageSource7 !== undefined && imageSource1 == imageSource4 && imageSource4 == imageSource7) ||
-      (imageSource2 !== undefined && imageSource5 !== undefined && imageSource8 !== undefined && imageSource2 == imageSource5 && imageSource5 == imageSource8)
-    ) {
-      return true;
-    }else if(
-    (imageSource !== undefined && imageSource4 !== undefined && imageSource8 !== undefined && imageSource == imageSource4 && imageSource4 == imageSource8) ||
-    (imageSource2 !== undefined && imageSource4 !== undefined && imageSource6 !== undefined && imageSource2 == imageSource4 && imageSource4 == imageSource6)){
-      return true;
-  }else{
-    return false;
-  }
 
-  }
+  
+
+  const checkVictory = () => {
+    const images = [
+      imageSource,
+      imageSource1,
+      imageSource2,
+      imageSource3,
+      imageSource4,
+      imageSource5,
+      imageSource6,
+      imageSource7,
+      imageSource8
+    ];
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (const line of lines) {
+      const [a, b, c] = line;
+      if (images[a] && images[a] === images[b] && images[a] === images[c]) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+
 const gameReset=()=>{
   const functionsArray = [
     setButtonVisible,
@@ -68,19 +81,27 @@ const gameReset=()=>{
     setButtonVisible7,
     setButtonVisible8
   ];
+  const imageSourceArray = [
+    setImageSource,
+    setImageSource1,
+    setImageSource2,
+    setImageSource3,
+    setImageSource4,
+    setImageSource5,
+    setImageSource6,
+    setImageSource7,
+    setImageSource8
+  ];
+  
   for (let index = 0; index  < functionsArray.length; index++) {
     functionsArray[index](true);
-    
+    imageSourceArray[index](undefined);
   };
 }
 const marked= (id: number) => {
   
-  if (checkVictory()==true && count % 2 === 0){
-    Alert.alert('Player 1 the winner');
 
-  }else if(checkVictory()==true && count % 2 === 1){
-    Alert.alert('Player 2 the winner');
-  }
+
   if(id==0){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource(require('./assets/x.png'));
@@ -166,18 +187,28 @@ const marked= (id: number) => {
     setImageSource8(require('./assets/x.png'));
     setButtonVisible8(false);
     setCount(prevCount => prevCount + 1)
-    Alert.alert('Tie try again');
-    setCount(0);
-    gameReset();
   }else if(count == 1||count ==3||count ==5||count ==7||count ==9){
     setImageSource8(require('./assets/O.png'));
     setButtonVisible8(false);
     setCount(prevCount => prevCount + 1)
-    Alert.alert('Tie try again');
-    setCount(0);
-    gameReset();
   }
 }
+if (checkVictory()==true && (count == 0||count ==2||count ==4||count ==6||count ==8)){
+  Alert.alert('Player 1 the winner');
+  setCount(0);
+  gameReset()
+
+}else if(checkVictory()==true && (count == 1||count ==3||count ==5||count ==7||count ==9)){
+  Alert.alert('Player 2 the winner');
+  setCount(0);
+  gameReset()
+}
+else if (count==8){
+  Alert.alert('Tie try again');
+  setCount(0);
+  gameReset();
+}
+
 }
 
   return (
