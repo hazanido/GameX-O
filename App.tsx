@@ -96,9 +96,11 @@ const gameReset=()=>{
     functionsArray[index](true);
     imageSourceArray[index](undefined);
   };
+  setCount(0);
 }
 const marked= (id: number) => {
-  
+  let updatedCount = count + 1; 
+  setCount(updatedCount);
   if(id==0){
     if(count == 0||count ==2||count ==4||count ==6||count ==8){
       setImageSource(require('./assets/x.png'));
@@ -193,20 +195,19 @@ const marked= (id: number) => {
 
   }
 }
-
-if (checkVictory() && count < 9) {
-
-  const winner = count % 2 === 0 ? 'Player 1' : 'Player 2';
-  Alert.alert(`${winner} the winner`);
+let isVictory = false
+if (checkVictory()) {
+  isVictory = true;
+  const winner = updatedCount % 2 === 0 ? 'Player 1' : 'Player 2';
   gameReset();
-  setCount(0);
-} else if (count === 8) {
+  
+  Alert.alert(`${winner} the winner`);
+} else if (updatedCount === 9 && !isVictory) {
   Alert.alert('Tie try again');
   gameReset();
-  setCount(0);
-} else {
-  setCount(prevCount => prevCount + 1);
+  
 }
+
 
 }
 
@@ -286,6 +287,19 @@ if (checkVictory() && count < 9) {
         <Image source={imageSource8} style={styles.button} />
       )}
 </View>
+<View style={styles.fixToText}>
+    <Button
+  title="Rules of the Game"
+  onPress={() => Alert.alert(
+    'Rules of the Game',
+    'The first player (X) places his token somewhere on the board. ' +
+    'The other player then places their mark and repeats until one of the players forms a sequence of three of their symbols in one row, one column or one diagonal and thus wins or until the entire board is filled and neither player was able to form a sequence, in which case the result of the game is draw.'
+  )}/>
+        <Button
+          title="Game reset"
+          onPress={gameReset}
+        />
+      </View>
     </ImageBackground>
     </View>
   );
@@ -320,5 +334,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
+    flex: 1,
+    alignItems: 'center',
+
   },
 });
